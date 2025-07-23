@@ -1,21 +1,16 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library) // Or id("com.android.library")
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.jetbrains.compose)
 }
 
 android {
-    namespace = "com.yowkey.phasecheck"
-    compileSdk = 36
+    namespace = "com.yowkey.ui"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.yowkey.phasecheck"
-        minSdk = 35
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -31,19 +26,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
+
     buildFeatures {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
-
 }
-
+kotlin {
+    jvmToolchain(17) // Use the same version as above
+}
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -52,10 +43,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
+    
     implementation(libs.koin.android)
-
-    // Jetpack Compose dependencies
+// Jetpack Compose dependencies
     implementation(platform(libs.androidx.compose.bom)) // Import the Compose BOM
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
@@ -69,6 +59,11 @@ dependencies {
     // Optional - For integration with Navigation
     implementation(libs.androidx.navigation.compose)
 
-    implementation(project(":ui"))
+    // For Compose Previews
+    debugImplementation(libs.androidx.compose.ui.tooling)
+
+    // Coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.gif)
 
 }
