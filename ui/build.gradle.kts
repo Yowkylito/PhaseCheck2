@@ -1,12 +1,12 @@
 plugins {
-    alias(libs.plugins.android.library) // Or id("com.android.library")
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.jetbrains.compose)
 }
 
 android {
     namespace = "com.yowkey.ui"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -46,17 +46,13 @@ dependencies {
     
     implementation(libs.koin.android)
 // Jetpack Compose dependencies
-    implementation(platform(libs.androidx.compose.bom)) // Import the Compose BOM
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.material3) // For Material Design 3 components
-
-    // Optional - For integration with Activities
+    implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.activity.compose)
-    // Optional - For integration with ViewModels
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    // Optional - For integration with Navigation
     implementation(libs.androidx.navigation.compose)
 
     // For Compose Previews

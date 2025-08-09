@@ -9,22 +9,30 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
-        // google() // This instance of google() can be removed as it's covered above
     }
 }
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
-// Add this block:
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
     }
 }
 
+
+
 rootProject.name = "PhaseCheck"
 include(":app")
 include(":ui")
+include(":common")
+include(":data")
