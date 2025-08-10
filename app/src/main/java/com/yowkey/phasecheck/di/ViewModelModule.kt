@@ -3,14 +3,16 @@ package com.yowkey.phasecheck.di
 
 
 import com.yowkey.common.viewmodels.MainViewModel
+import com.yowkey.data.repositories.WeatherRepository
+import com.yowkey.data.repositories.WeatherRepositoryImp
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
     // Single instance of MyRepository
-    //single { MyRepository() }
+    single<WeatherRepository> { WeatherRepositoryImp() }
 
-    // ViewModel for MyViewModel
     // Koin will handle the ViewModel lifecycle
-    viewModel { MainViewModel() }
+
+    viewModel { MainViewModel(get()) }
   }
