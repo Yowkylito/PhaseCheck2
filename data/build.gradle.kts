@@ -47,4 +47,6 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.retrofit.serialization)
+
+    implementation(project(":network"))
 }

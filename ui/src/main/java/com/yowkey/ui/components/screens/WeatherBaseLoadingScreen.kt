@@ -7,9 +7,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +23,7 @@ import coil.ImageLoader
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
+import com.yowkey.data.models.states.CurrentWeatherState
 import com.yowkey.ui.R
 import com.yowkey.ui.components.theme.WeatherType
 import com.yowkey.ui.components.theme.cloudyGradientEnd
@@ -52,6 +55,7 @@ fun getWeatherBackgroundColors(weatherType: WeatherType): List<Color> {
 @Composable
 fun WeatherBaseLoadingScreen(
     weatherType: WeatherType = WeatherType.CLOUDY,
+    currentWeatherState: CurrentWeatherState = CurrentWeatherState(),
     onClick: () -> Unit = {}
 ) {
 
@@ -76,12 +80,14 @@ fun WeatherBaseLoadingScreen(
         WeatherType.THUNDERSTORM -> R.drawable.storm
     }
 
-    Box(
+    Column(
         Modifier
             .fillMaxSize()
             .background(brush = animatedBackgroundBrush)
             .animateContentSize(),
-        contentAlignment = Alignment.Center
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+
     ) {
         Image(
             modifier = Modifier
@@ -94,5 +100,22 @@ fun WeatherBaseLoadingScreen(
             painter = rememberAsyncImagePainter(gifLoading, imageLoader),
             contentDescription = null
         )
+        Text(
+            text = currentWeatherState.lastUpdated,
+            color = Color.White
+        )
+        Text(
+            text = currentWeatherState.location,
+            color = Color.White
+        )
+        Text(
+            text = currentWeatherState.region,
+            color = Color.White
+        )
+        Text(
+            text = currentWeatherState.country,
+            color = Color.White
+        )
     }
+
 }

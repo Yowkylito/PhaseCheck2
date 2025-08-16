@@ -19,12 +19,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.yowkey.common.intents.MainIntent
 import com.yowkey.common.states.MainState
-
 import com.yowkey.common.viewmodels.MainViewModel
 import com.yowkey.ui.components.theme.WeatherType
 import com.yowkey.ui.components.theme.rememberAnimatedWeatherBrush
 import com.yowkey.ui.header.MainTopBar
-import kotlinx.coroutines.delay
 import org.koin.androidx.compose.koinViewModel
 
 
@@ -39,18 +37,17 @@ fun MainScreen(
     val state by mainViewModel.mainState.collectAsStateWithLifecycle()
     var weatherType by remember { mutableStateOf(WeatherType.SUNNY) }
     LaunchedEffect(state) {
-        when(state){
+        when (state) {
             MainState.Default -> {}
-            is MainState.UpdateBackground ->{
-               weatherType = (state as MainState.UpdateBackground).weatherType
+            is MainState.UpdateBackground -> {
+                weatherType = (state as MainState.UpdateBackground).weatherType
             }
+
+            is MainState.Error -> {}
         }
     }
     LaunchedEffect(Unit) {
-        while (true) {
-            mainViewModel.processIntent(MainIntent.UpdateBackground)
-            delay(2000)
-        }
+        mainViewModel.processIntent(MainIntent.UpdateBackground)
     }
 
     val animatedBackgroundBrush = rememberAnimatedWeatherBrush(weatherType = weatherType)

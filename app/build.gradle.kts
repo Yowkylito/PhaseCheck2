@@ -19,13 +19,22 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        buildFeatures{
+            buildConfig = true
         }
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            buildConfigField("String", "API_ENV", "\"RELEASE\"")
+
+        }
+        getByName("debug") {
+            buildConfigField("String", "API_ENV", "\"DEBUG\"")
+
+            applicationIdSuffix = ".debug"
+            isDebuggable = true
+        }
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -44,6 +53,8 @@ android {
 }
 
 dependencies {
+    debugImplementation(libs.library)
+    releaseImplementation(libs.library.no.op)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -68,9 +79,15 @@ dependencies {
     // Optional - For integration with Navigation
     implementation(libs.androidx.navigation.compose)
 
+    // Retrofit for network requests
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit.serialization)
+
     implementation(project(":ui"))
     implementation(project(":common"))
     implementation(project(":data"))
+    implementation(project(":network"))
 
 
 }

@@ -16,7 +16,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yowkey.common.states.MainState
 import com.yowkey.common.viewmodels.MainViewModel
-import com.yowkey.navigation.Route.Details
 import com.yowkey.navigation.Route.Home
 import com.yowkey.ui.components.screens.WeatherBaseLoadingScreen
 import com.yowkey.ui.components.theme.WeatherType
@@ -30,12 +29,15 @@ fun MainNavHost(
     val navController = rememberNavController()
     val state by mainViewModel.mainState.collectAsStateWithLifecycle()
     var themeColor by remember { mutableStateOf(WeatherType.SUNNY) }
+    val currentWeatherState by mainViewModel.currentWeatherState.collectAsStateWithLifecycle()
     LaunchedEffect(state) {
         when (state) {
             MainState.Default -> {}
             is MainState.UpdateBackground -> {
                 themeColor = (state as MainState.UpdateBackground).weatherType
             }
+
+            is MainState.Error -> {}
         }
     }
 
@@ -50,13 +52,11 @@ fun MainNavHost(
     ) {
         composable<Home> {
             WeatherBaseLoadingScreen(
+                currentWeatherState = currentWeatherState,
                 weatherType = themeColor,
-            ) { navController.navigate(Details("123")) }
+            )
         }
-        composable<Details> {
-            WeatherBaseLoadingScreen(
-                weatherType = themeColor,
-            ) { navController.navigate(Home) }
-        }
+
+
     }
 }

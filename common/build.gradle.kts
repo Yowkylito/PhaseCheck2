@@ -71,4 +71,5 @@ dependencies {
 
     implementation(project(":ui"))
     implementation(project(":data"))
+    implementation(project(":network"))
 }
