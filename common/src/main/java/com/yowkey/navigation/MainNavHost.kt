@@ -38,6 +38,7 @@ fun MainNavHost(
             }
 
             is MainState.Error -> {}
+            MainState.Loading -> {}
         }
     }
 

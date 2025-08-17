@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.ImageLoader
+import androidx.compose.ui.graphics.Color.Companion.White
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
@@ -54,6 +55,7 @@ fun getWeatherBackgroundColors(weatherType: WeatherType): List<Color> {
 @Preview
 @Composable
 fun WeatherBaseLoadingScreen(
+    modifier: Modifier = Modifier,
     weatherType: WeatherType = WeatherType.CLOUDY,
     currentWeatherState: CurrentWeatherState = CurrentWeatherState(),
     onClick: () -> Unit = {}
@@ -81,7 +83,7 @@ fun WeatherBaseLoadingScreen(
     }
 
     Column(
-        Modifier
+        modifier=modifier
             .fillMaxSize()
             .background(brush = animatedBackgroundBrush)
             .animateContentSize(),
@@ -100,21 +102,18 @@ fun WeatherBaseLoadingScreen(
             painter = rememberAsyncImagePainter(gifLoading, imageLoader),
             contentDescription = null
         )
-        Text(
-            text = currentWeatherState.lastUpdated,
-            color = Color.White
-        )
+
         Text(
             text = currentWeatherState.location,
-            color = Color.White
+            color = White
         )
         Text(
             text = currentWeatherState.region,
-            color = Color.White
+            color = White
         )
         Text(
             text = currentWeatherState.country,
-            color = Color.White
+            color = White
         )
     }
 

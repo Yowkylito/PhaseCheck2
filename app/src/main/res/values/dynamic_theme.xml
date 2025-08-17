@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.App.Starting" parent="Theme.PhaseCheck">
+        <!-- Set your splash screen background -->
+        <item name="windowSplashScreenBackground">@color/black</item>
+
+        <!-- Optional: Animated icon -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/sunny_season</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item> <!-- 1 second -->
+
+        <!-- Following theme will be shown after splash screen disappears -->
+        <item name="postSplashScreenTheme">@style/Theme.PhaseCheck</item>
+    </style>
+</resources>

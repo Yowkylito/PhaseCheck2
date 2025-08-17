@@ -35,6 +35,7 @@ fun MainScreen(
 ) {
 
     val state by mainViewModel.mainState.collectAsStateWithLifecycle()
+    val currentWeatherState by mainViewModel.currentWeatherState.collectAsStateWithLifecycle()
     var weatherType by remember { mutableStateOf(WeatherType.SUNNY) }
     LaunchedEffect(state) {
         when (state) {
@@ -44,6 +45,9 @@ fun MainScreen(
             }
 
             is MainState.Error -> {}
+            MainState.Loading -> {
+
+            }
         }
     }
     LaunchedEffect(Unit) {
@@ -57,6 +61,7 @@ fun MainScreen(
         topBar = {
             val padding = WindowInsets.systemBars.asPaddingValues()
             MainTopBar(
+                weatherState = currentWeatherState,
                 modifier = Modifier.padding(top = padding.calculateTopPadding()),
                 backGroundColor = animatedBackgroundBrush,
             )

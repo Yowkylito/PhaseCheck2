@@ -1,6 +1,7 @@
 [versions]
 agp = "8.11.1"
 coilCompose = "2.7.0"
+coreSplashscreen = "1.6.0-alpha01"
 koinAndroid = "4.1.0"
 koinAndroidxCompose = "4.1.0" # Version for koin-androidx-compose
 kotlin = "2.2.0"
@@ -24,6 +25,7 @@ kotlinxSerializationConverter = "1.0.0" # Version for kotlinx-serialization conv
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 coil-gif = { module = "io.coil-kt:coil-gif", version.ref = "coilCompose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }

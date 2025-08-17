@@ -26,6 +26,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             buildConfigField("String", "API_ENV", "\"RELEASE\"")
+            signingConfig = signingConfigs.getByName("debug")
 
         }
         getByName("debug") {
@@ -88,6 +89,8 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":data"))
     implementation(project(":network"))
+
+    implementation("androidx.core:core-splashscreen:1.0.1")
 
 
 }

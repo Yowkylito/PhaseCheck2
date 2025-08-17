@@ -5,5 +5,6 @@ data class CurrentWeatherState(
     val location: String = "",
     val region: String = "",
     val country: String = "",
+    val currentWeather: String = "",
 
 )

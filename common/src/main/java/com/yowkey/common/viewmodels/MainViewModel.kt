@@ -20,7 +20,7 @@ class MainViewModel(
     private val _mainState = MutableStateFlow<MainState>(MainState.Default)
     val mainState: StateFlow<MainState> = _mainState
 
-    private val _currentWeatherState = MutableStateFlow<CurrentWeatherState>(CurrentWeatherState())
+    private val _currentWeatherState = MutableStateFlow(CurrentWeatherState())
     val currentWeatherState: StateFlow<CurrentWeatherState> = _currentWeatherState
      fun processIntent(intent: MainIntent) {
         when (intent) {
@@ -41,7 +41,8 @@ class MainViewModel(
                         lastUpdated = repositoryResponse.current.last_updated,
                         location = repositoryResponse.location.name,
                         region = repositoryResponse.location.region,
-                        country = repositoryResponse.location.country
+                        country = repositoryResponse.location.country,
+                        currentWeather = repositoryResponse.current.condition.text
                     )}
             } catch (e: Exception) {
                 Log.e("MainViewModel23", "Exception in getCurrentWeather: ${e.message}")
