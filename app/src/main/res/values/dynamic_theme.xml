@@ -5,7 +5,7 @@
         <item name="windowSplashScreenBackground">@color/black</item>
 
         <!-- Optional: Animated icon -->
-        <item name="windowSplashScreenAnimatedIcon">@drawable/sunny_season</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/sunny4</item>
         <item name="windowSplashScreenAnimationDuration">1000</item> <!-- 1 second -->
 
         <!-- Following theme will be shown after splash screen disappears -->

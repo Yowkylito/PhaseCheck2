@@ -11,6 +11,7 @@ junitVersion = "1.3.0"
 espressoCore = "3.7.0"
 appcompat = "1.7.1"
 libraryNoOp = "4.2.0"
+mapsCompose = "6.7.2"
 material = "1.12.0"
 
 composeBom = "2025.07.00" # Check for the latest BOM version
@@ -36,6 +37,7 @@ koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndr
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinAndroidxCompose" }
 library = { module = "com.github.chuckerteam.chucker:library", version.ref = "libraryNoOp" }
 library-no-op = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "libraryNoOp" }
+maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
@@ -49,7 +51,7 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" } # add here for retrofit
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "converterGson" } # add here for retrofit
 retrofit-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "kotlinxSerializationConverter" }
-
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version = "0.7.1" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

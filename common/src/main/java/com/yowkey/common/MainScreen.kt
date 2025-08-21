@@ -20,7 +20,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.yowkey.common.intents.MainIntent
 import com.yowkey.common.states.MainState
 import com.yowkey.common.viewmodels.MainViewModel
-import com.yowkey.ui.components.theme.WeatherType
+import com.yowkey.data.models.WeatherType
 import com.yowkey.ui.components.theme.rememberAnimatedWeatherBrush
 import com.yowkey.ui.header.MainTopBar
 import org.koin.androidx.compose.koinViewModel
@@ -63,6 +63,7 @@ fun MainScreen(
             MainTopBar(
                 weatherState = currentWeatherState,
                 modifier = Modifier.padding(top = padding.calculateTopPadding()),
+                weatherType = weatherType,
                 backGroundColor = animatedBackgroundBrush,
             )
         },

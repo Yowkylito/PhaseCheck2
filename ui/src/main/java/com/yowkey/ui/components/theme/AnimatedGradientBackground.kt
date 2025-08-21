@@ -1,6 +1,5 @@
 package com.yowkey.ui.components.theme
 
-import com.yowkey.ui.components.screens.getWeatherBackgroundColors
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.tween
@@ -9,6 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import com.yowkey.data.models.WeatherType
 
 
 /**
@@ -29,8 +29,10 @@ fun rememberAnimatedWeatherBrush(
 ): Brush {
     val targetColors = getWeatherBackgroundColors(weatherType)
 
-    val safeTargetColor1 = targetColors.getOrElse(0) { defaultColors.getOrElse(0) { Color.Transparent } }
-    val safeTargetColor2 = targetColors.getOrElse(1) { defaultColors.getOrElse(1) { Color.Transparent } }
+    val safeTargetColor1 =
+        targetColors.getOrElse(0) { defaultColors.getOrElse(0) { Color.Transparent } }
+    val safeTargetColor2 =
+        targetColors.getOrElse(1) { defaultColors.getOrElse(1) { Color.Transparent } }
 
     val animatedColor1 by animateColorAsState(
         targetValue = safeTargetColor1,

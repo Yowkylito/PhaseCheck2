@@ -16,9 +16,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yowkey.common.states.MainState
 import com.yowkey.common.viewmodels.MainViewModel
+import com.yowkey.data.models.WeatherType
 import com.yowkey.navigation.Route.Home
 import com.yowkey.ui.components.screens.WeatherBaseLoadingScreen
-import com.yowkey.ui.components.theme.WeatherType
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

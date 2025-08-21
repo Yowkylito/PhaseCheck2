@@ -62,6 +62,10 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.coil.gif)
 
+    implementation(libs.kotlinx.datetime)
+
+    implementation(libs.maps.compose)
+
     implementation(project(":data"))
 
 }

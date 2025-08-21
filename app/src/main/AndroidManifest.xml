@@ -8,12 +8,13 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/sunny_season"
+        android:icon="@drawable/sunny4"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/sunny_season"
+        android:roundIcon="@drawable/sunny4"
         android:supportsRtl="true"
         android:theme="@style/Theme.PhaseCheck">
-
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCcWsppWCOWfnBAu6-HPsvcCszpCNXcnqw"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

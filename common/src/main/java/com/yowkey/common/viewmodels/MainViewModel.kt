@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yowkey.common.intents.MainIntent
 import com.yowkey.common.states.MainState
+import com.yowkey.data.models.WeatherType
 import com.yowkey.data.models.states.CurrentWeatherState
 import com.yowkey.data.repositories.WeatherRepository
-import com.yowkey.ui.components.theme.WeatherType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -22,7 +22,7 @@ class MainViewModel(
 
     private val _currentWeatherState = MutableStateFlow(CurrentWeatherState())
     val currentWeatherState: StateFlow<CurrentWeatherState> = _currentWeatherState
-     fun processIntent(intent: MainIntent) {
+    fun processIntent(intent: MainIntent) {
         when (intent) {
             is MainIntent.UpdateBackground -> getCurrentWeather()
         }
@@ -30,12 +30,9 @@ class MainViewModel(
 
     private fun getCurrentWeather() {
         viewModelScope.launch {
+            _mainState.update { MainState.Loading }
             try {
                 val repositoryResponse = weatherRepository.getCurrentWeather()
-                val determinedWeatherType =mapCodeToWeatherType(repositoryResponse.current.condition.code)
-                Log.d("MainViewModel23", "Updating background. Determined WeatherType:$determinedWeatherType\n" +
-                        "repositoryResponse: ${repositoryResponse}")
-                _mainState.update { MainState.UpdateBackground(determinedWeatherType) }
                 _currentWeatherState.update {
                     CurrentWeatherState(
                         lastUpdated = repositoryResponse.current.last_updated,
@@ -43,7 +40,16 @@ class MainViewModel(
                         region = repositoryResponse.location.region,
                         country = repositoryResponse.location.country,
                         currentWeather = repositoryResponse.current.condition.text
-                    )}
+                    )
+                }
+                val determinedWeatherType =
+                    mapCodeToWeatherType(repositoryResponse.current.condition.code)
+                Log.d(
+                    "MainViewModel23",
+                    "Updating background. Determined WeatherType:$determinedWeatherType\n" +
+                            "repositoryResponse: ${repositoryResponse}"
+                )
+                _mainState.update { MainState.UpdateBackground(determinedWeatherType) }
             } catch (e: Exception) {
                 Log.e("MainViewModel23", "Exception in getCurrentWeather: ${e.message}")
                 _mainState.update { MainState.Error("An unexpected error occurred") }
@@ -59,6 +65,7 @@ class MainViewModel(
             1279, // Patchy light snow with thunder
             1282  // Moderate or heavy snow with thunder
                 -> true
+
             else -> false
         }
     }

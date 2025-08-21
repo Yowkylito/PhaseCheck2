@@ -1,6 +1,6 @@
 package com.yowkey.common.states
 
-import com.yowkey.ui.components.theme.WeatherType
+import com.yowkey.data.models.WeatherType
 
 sealed class MainState {
     data object Default : MainState()
